@@ -10,11 +10,41 @@
 </head>
 
 <body>
+    <!--top title and button-->
     <div class="jumbotron text-center">
         <h1>Mission to Mars</h1>
         <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
-
+    <!--latest mars news-->
+    <div class="container">
+        <div class="row" id="mars-news">
+            <div class="media">
+                <div class="media-body">
+                    <h4>Latest Mars News</h4>
+                    <h5>{{mars.news_title}}</h5>
+                    <p>{{mars.news_p}}</p>
+                </div>
+            </div>
+        </div>   
+    </div>
+    <!---->
+    <div class="row no-gutter img-table">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body" id="img-table">
+                    <h4 class="card-title">Featured Mars Image</h4>
+                    <img class="card-img-bottom" src="{{mars.featured_image_url}}">
+                </div>
+                <br>
+                <div class="row" id="mars-facts">
+                    <div class="col-md-12">
+                        <h4>Mars Facts</h4>
+                        {{mars.mars_fact_table}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

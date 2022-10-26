@@ -10,7 +10,7 @@ import pymongo
 #setup mongo db
 client = pymongo.MongoClient('mongodb://localhost:27017')
 db = client.mars_db
-collection = db.mars 
+mars_db = db.mars 
 
 def scrape():
     #nasa news scraping_________
@@ -55,7 +55,7 @@ def scrape():
     mars_earth_df = table[0]
     mars_earth_df.rename(columns={0:'Description',1:'Mars',2:'Earth'},inplace=True)
     mars_earth_df.set_index('Description',inplace=True)
-    mars_earth_df.to_html(header=False,index=False)
+    mars_df_dict = mars_earth_df.to_dict('records')
 
     #mars hemispheres
     mars_hem_url = 'https://marshemispheres.com/'
@@ -95,7 +95,9 @@ def scrape():
         'news_title': title,
         'news_p': paragraph,
         'featured_image_url': featured_image_url,
-        'mars_fact_table': mars_earth_df,
+        'mars_fact_table': mars_df_dict,
         'mars_hemispheres': hemisphere_image_urls
     }
-    collection.insert(mars_data)
+    
+    # mars_db.insert_many([mars_data])
+    return mars_data
